@@ -31,7 +31,7 @@ steps:
       # Search the test or dev requirements files, so that test and dev py packages can be excluded in the generated SBOM
       files=$(find . -type f -regex ".*\(test.*requirements\|requirements.*test\|dev.*requirements\|requirements.*dev\).*\.txt") && \
       if [ -n "$files" ]; then \
-        cdxgen -t python -o artifactSBOM.json --spec-version 1.4 \
+        cdxgen -t python36 -o artifactSBOM.json --spec-version 1.4 \
         --exclude "*{requirements,dev,test}*{requirements,dev,test}*.txt" --project-name "$(basename $OCI_PRIMARY_SOURCE_URL)" --no-recurse
       else \
          cdxgen -t python -o artifactSBOM.json --spec-version 1.4 --project-name "$(basename $OCI_PRIMARY_SOURCE_URL)" --no-recurse
